@@ -2,7 +2,6 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
 
 import static junit.framework.TestCase.assertTrue;
 
@@ -11,26 +10,18 @@ public class SortNameInAlphabTest {
     public void testCompare() throws Exception {
         Calendar cal = Calendar.getInstance();
         cal.set(1993, Calendar.OCTOBER, 18);
-        Date date = cal.getTime();
-        Human max = new Human("Max", 1923, date);
+        Human max = new Human("Max", 1923, cal);
         cal.set(1999, Calendar.OCTOBER, 18);
-        date = cal.getTime();
-        Human petr = new Human("Petr", 1234, date);
+        Human petr = new Human("Petr", 1234, cal);
         cal.set(1994, Calendar.APRIL, 5);
-        date = cal.getTime();
-        Human anna = new Human("Anna", 2354, date);
+        Human anna = new Human("Anna", 2354, cal);
         cal.set(1988, Calendar.JULY, 5);
-        date = cal.getTime();
-        Human alexandr = new Human("Alexandr", 2134, date);
+        Human alexandr = new Human("Alexandr", 2134, cal);
         cal.set(1994, Calendar.APRIL, 5);
-        date = cal.getTime();
-        Human masha = new Human("Masha", 6543, date);
+        Human masha = new Human("Masha", 6543, cal);
         Human[] arr = {alexandr, masha, petr, anna, max};
         Human[] result = {alexandr, anna, masha, max, petr};
         Arrays.sort(arr, new SortNameInAlphab());
-//        for (int i = 0; i < arr.length; i++) {
-//            arr[i].print();
-//        }
         assertTrue(Arrays.equals(arr, result));
     }
 }

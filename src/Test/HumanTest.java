@@ -2,62 +2,84 @@ import org.junit.Test;
 
 import java.util.Arrays;
 import java.util.Calendar;
-import java.util.Date;
 
 import static junit.framework.TestCase.assertTrue;
 
 public class HumanTest {
     @Test
-    public void getNumbDoc() throws Exception {
+    public void testGetNumbDoc() throws Exception {
         Calendar cal = Calendar.getInstance();
         cal.set(1988, Calendar.OCTOBER, 18);
-        Date date = cal.getTime();
-        Human petr = new Human("Petr", 1923, date);
+        Human petr = new Human("Petr", 1923, cal);
         assertTrue(petr.getNumbDoc() == 1923);
     }
 
     @Test
-    public void getName() throws Exception {
+    public void testSetNumbDoc() throws Exception {
         Calendar cal = Calendar.getInstance();
         cal.set(1988, Calendar.OCTOBER, 18);
-        Date date = cal.getTime();
-        Human petr = new Human("Petr", 1923, date);
+        Human petr = new Human("Petr", 1923, cal);
+        petr.setNumbDoc(2015);
+        Human result = new Human("Petr", 2015, cal);
+        assertTrue(petr.equals(result));
+    }
+
+    @Test
+    public void testGetName() throws Exception {
+        Calendar cal = Calendar.getInstance();
+        cal.set(1988, Calendar.OCTOBER, 18);
+        Human petr = new Human("Petr", 1923, cal);
         assertTrue(petr.getName() == "Petr");
     }
 
     @Test
-    public void getBirthday() throws Exception {
+    public void testGetBirthday() throws Exception {
         Calendar cal = Calendar.getInstance();
         cal.set(1988, Calendar.OCTOBER, 18);
-        Date date = cal.getTime();
-        Human petr = new Human("Petr", 1923, date);
-        assertTrue(petr.getBirthday() == date);
+        Human petr = new Human("Petr", 1923, cal);
+        assertTrue(petr.getBirthday().equals(cal));
     }
+
+//    @Test
+//    public void trueCheckCorrect() throws Exception {
+//        Calendar cal = Calendar.getInstance();
+//        cal.set(1988, Calendar.OCTOBER, 18);
+//        Human petr = new Human("Petr", 1923, cal);
+//        assertTrue(petr.checkCorrect());
+//    }
+//
+//
+//    @Test
+//    public void nullCheckCorrect() throws Exception {
+//        Human petr = null;
+//        assertFalse(petr.checkCorrect());
+//    }
 
     @Test
     public void testCompareTo() throws Exception {
         Calendar cal = Calendar.getInstance();
         cal.set(1993, Calendar.OCTOBER, 18);
-        Date date = cal.getTime();
-        Human max = new Human("Max", 1923, date);
+        Human max = new Human("Max", 1923, cal);
         cal.set(1999, Calendar.OCTOBER, 18);
-        date = cal.getTime();
-        Human petr = new Human("Petr", 1234, date);
+        Human petr = new Human("Petr", 1234, cal);
         cal.set(1994, Calendar.APRIL, 5);
-        date = cal.getTime();
-        Human anna = new Human("Anna", 2354, date);
+        Human anna = new Human("Anna", 2354, cal);
         cal.set(1988, Calendar.JULY, 5);
-        date = cal.getTime();
-        Human alexandr = new Human("Alexandr", 2134, date);
+        Human alexandr = new Human("Alexandr", 2134, cal);
         cal.set(1994, Calendar.APRIL, 5);
-        date = cal.getTime();
-        Human masha = new Human("Masha", 6543, date);
+        Human masha = new Human("Masha", 6543, cal);
         Human[] arr = {max, petr, anna, alexandr, masha};
         Human[] result = {petr, anna, masha, max, alexandr};
         Arrays.sort(arr);
         assertTrue(Arrays.equals(arr, result));
-//        for(int i=0; i<arr.length; i++){
-//            arr[i].print();
-//        }
+    }
+
+    @Test
+    public void testToString() throws Exception {
+        Calendar cal = Calendar.getInstance();
+        cal.set(1993, Calendar.OCTOBER, 18);
+        Human max = new Human("Max", 1923, cal);
+        String result = "Human{Max: Birthday - 18.10.1993. ID - 1923}";
+        assertTrue(result.equals(max.toString()));
     }
 }

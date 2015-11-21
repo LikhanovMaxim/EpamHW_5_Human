@@ -1,32 +1,39 @@
-import java.util.Date;
+import java.util.Calendar;
 
 class Human implements Comparable {
     private final String name;
+    private final Calendar birthday;
     private int numbDoc;
-    private final Date birthday;
 
-//    public void print() {
-//        SimpleDateFormat format = new SimpleDateFormat("dd.MM.YYYY");
-//        System.out.println(name + ". Birthday - " + format.format(birthday) + ". Number document - " + numbDoc);
-//    }
-
-    Human(String name, int numbDoc, Date birthday) {
+    Human(String name, int numbDoc, Calendar birthday) {
         this.name = name;
         this.numbDoc = numbDoc;
-        this.birthday = birthday;
+        this.birthday = (Calendar) birthday.clone();
     }
 
     public int getNumbDoc() {
         return numbDoc;
     }
 
+    public void setNumbDoc(int id) {
+        this.numbDoc = id;
+    }
+
     public String getName() {
         return name;
     }
 
-    public Date getBirthday() {
-        return birthday;
+    public Calendar getBirthday() {
+        return (Calendar) birthday.clone();
     }
+
+//    public boolean checkCorrect() {
+//        if (this == null || name == null || birthday == null) {
+//            return false;
+//        } else {
+//            return true;
+//        }
+//    }
 
     @Override
     public int compareTo(Object o) {
@@ -37,5 +44,26 @@ class Human implements Comparable {
         } else {
             return (numbDoc - compHuman.getNumbDoc());
         }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        Human secondHuman = (Human) o;
+        if (name.equals(secondHuman.getName()) && birthday.equals(secondHuman.getBirthday()) && numbDoc == secondHuman.getNumbDoc()) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        int year = birthday.get(birthday.YEAR);
+        int month = birthday.get(birthday.MONTH) + 1;
+        int day = birthday.get(birthday.DATE);
+        String print = "Human{" + name;
+        print += ": Birthday - " + day + "." + month + "." + year;
+        print += ". ID - " + numbDoc;
+        print += "}";
+        return print;
     }
 }
