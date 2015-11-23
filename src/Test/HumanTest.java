@@ -40,7 +40,7 @@ public class HumanTest {
         Human petr = new Human("Petr", 1923, cal);
         assertTrue(petr.getBirthday().equals(cal));
     }
-    
+
     @Test
     public void nullCompareTo() throws Exception {
         Calendar cal = Calendar.getInstance();
