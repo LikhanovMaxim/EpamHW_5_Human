@@ -30,12 +30,6 @@ class Human implements Comparable {
     @Override
     public int compareTo(Object o) {
         Human compHuman = (Human) o;
-//        if (this == null && compHuman == null) {  //no work
-//            return 0;
-//        }
-//        if (this == null) {
-//            return -1;
-//        }
         if (compHuman == null) {
             return 1;
         }
