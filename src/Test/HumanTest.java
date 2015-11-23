@@ -3,23 +3,24 @@ import org.junit.Test;
 import java.util.Arrays;
 import java.util.Calendar;
 
+import static junit.framework.Assert.assertFalse;
 import static junit.framework.TestCase.assertTrue;
 
 public class HumanTest {
     @Test
-    public void testGetNumbDoc() throws Exception {
+    public void testGetId() throws Exception {
         Calendar cal = Calendar.getInstance();
         cal.set(1988, Calendar.OCTOBER, 18);
         Human petr = new Human("Petr", 1923, cal);
-        assertTrue(petr.getNumbDoc() == 1923);
+        assertTrue(petr.getId() == 1923);
     }
 
     @Test
-    public void testSetNumbDoc() throws Exception {
+    public void testSetId() throws Exception {
         Calendar cal = Calendar.getInstance();
         cal.set(1988, Calendar.OCTOBER, 18);
         Human petr = new Human("Petr", 1923, cal);
-        petr.setNumbDoc(2015);
+        petr.setId(2015);
         Human result = new Human("Petr", 2015, cal);
         assertTrue(petr.equals(result));
     }
@@ -53,6 +54,42 @@ public class HumanTest {
         Human human = new Human("Masha", 6543, cal);
         Human compareNull = null;
         assertTrue(human.compareTo(compareNull) == 1);
+    }
+
+    @Test
+    public void reflexivityEquals() throws Exception {
+        Calendar cal = Calendar.getInstance();
+        cal.set(1993, Calendar.OCTOBER, 18);
+        Human max = new Human("Max", 1923, cal);
+        assertTrue(max.equals(max));
+    }
+
+    @Test
+    public void differentNameEquals() throws Exception {
+        Calendar cal = Calendar.getInstance();
+        cal.set(1993, Calendar.OCTOBER, 18);
+        Human max = new Human("Max", 1923, cal);
+        Human anna = new Human("Anna", 1923, cal);
+        assertFalse(max.equals(anna));
+    }
+
+    @Test
+    public void differentIdEquals() throws Exception {
+        Calendar cal = Calendar.getInstance();
+        cal.set(1993, Calendar.OCTOBER, 18);
+        Human firstAnna = new Human("Anna", 1923, cal);
+        Human secondAnna = new Human("Anna", 1234, cal);
+        assertFalse(firstAnna.equals(secondAnna));
+    }
+
+    @Test
+    public void differentBirthdayEquals() throws Exception {
+        Calendar cal = Calendar.getInstance();
+        cal.set(1993, Calendar.OCTOBER, 18);
+        Human firstAnna = new Human("Anna", 1923, cal);
+        cal.set(1999, Calendar.OCTOBER, 18);
+        Human secondAnna = new Human("Anna", 1923, cal);
+        assertFalse(firstAnna.equals(secondAnna));
     }
 
     @Test
