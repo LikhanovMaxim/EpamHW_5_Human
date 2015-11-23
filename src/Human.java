@@ -3,20 +3,20 @@ import java.util.Calendar;
 class Human implements Comparable {
     private final String name;
     private final Calendar birthday;
-    private int numbDoc;
+    private int id;
 
-    Human(String name, int numbDoc, Calendar birthday) {
+    Human(String name, int id, Calendar birthday) {
         this.name = name;
-        this.numbDoc = numbDoc;
+        this.id = id;
         this.birthday = (Calendar) birthday.clone();
     }
 
-    public int getNumbDoc() {
-        return numbDoc;
+    public int getId() {
+        return id;
     }
 
-    public void setNumbDoc(int id) {
-        this.numbDoc = id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -43,14 +43,14 @@ class Human implements Comparable {
         if (compBirthday != 0) {
             return compBirthday;
         } else {
-            return (numbDoc - compHuman.getNumbDoc());
+            return (id - compHuman.getId());
         }
     }
 
     @Override
     public boolean equals(Object o) {
         Human secondHuman = (Human) o;
-        if (name.equals(secondHuman.getName()) && birthday.equals(secondHuman.getBirthday()) && numbDoc == secondHuman.getNumbDoc()) {
+        if (name.equals(secondHuman.getName()) && birthday.equals(secondHuman.getBirthday()) && id == secondHuman.getId()) {
             return true;
         }
         return false;
@@ -63,7 +63,7 @@ class Human implements Comparable {
         int day = birthday.get(birthday.DATE);
         String print = "Human{" + name;
         print += ": Birthday - " + day + "." + month + "." + year;
-        print += ". ID - " + numbDoc;
+        print += ". ID - " + id;
         print += "}";
         return print;
     }
