@@ -40,20 +40,20 @@ public class HumanTest {
         assertTrue(petr.getBirthday().equals(cal));
     }
 
-//    @Test
-//    public void trueCheckCorrect() throws Exception {
-//        Calendar cal = Calendar.getInstance();
-//        cal.set(1988, Calendar.OCTOBER, 18);
-//        Human petr = new Human("Petr", 1923, cal);
-//        assertTrue(petr.checkCorrect());
+    //    @Test
+//    public void nullCompareTo() throws Exception {
+//        Human firstNull = null;
+//        Human secondNull = null;
+//        assertTrue(firstNull.compareTo(secondNull) == 0);
 //    }
-//
-//
-//    @Test
-//    public void nullCheckCorrect() throws Exception {
-//        Human petr = null;
-//        assertFalse(petr.checkCorrect());
-//    }
+    @Test
+    public void nullCompareTo() throws Exception {
+        Calendar cal = Calendar.getInstance();
+        cal.set(1994, Calendar.APRIL, 5);
+        Human human = new Human("Masha", 6543, cal);
+        Human compareNull = null;
+        assertTrue(human.compareTo(compareNull) == 1);
+    }
 
     @Test
     public void testCompareTo() throws Exception {

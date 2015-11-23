@@ -27,17 +27,18 @@ class Human implements Comparable {
         return (Calendar) birthday.clone();
     }
 
-//    public boolean checkCorrect() {
-//        if (this == null || name == null || birthday == null) {
-//            return false;
-//        } else {
-//            return true;
-//        }
-//    }
-
     @Override
     public int compareTo(Object o) {
         Human compHuman = (Human) o;
+//        if (this == null && compHuman == null) {  //no work
+//            return 0;
+//        }
+//        if (this == null) {
+//            return -1;
+//        }
+        if (compHuman == null) {
+            return 1;
+        }
         int compBirthday = -birthday.compareTo(compHuman.getBirthday());
         if (compBirthday != 0) {
             return compBirthday;
