@@ -59,6 +59,16 @@ public class HumanTest {
     }
 
     @Test
+    public void symmetryEquals() throws Exception {
+        Calendar cal = Calendar.getInstance();
+        cal.set(1993, Calendar.OCTOBER, 18);
+        Human firstHuman = new Human("Human", 1923, cal);
+        Human secondHuman = new Human("Human", 1923, cal);
+        assertTrue(firstHuman.equals(secondHuman));
+        assertTrue(secondHuman.equals(firstHuman));
+    }
+
+    @Test
     public void differentNameEquals() throws Exception {
         Calendar cal = Calendar.getInstance();
         cal.set(1993, Calendar.OCTOBER, 18);
