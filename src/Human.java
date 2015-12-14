@@ -1,6 +1,6 @@
 import java.util.Calendar;
 
-class Human implements Comparable {
+class Human implements Comparable<Human> {
     private final String name;
     private final Calendar birthday;
     private int id;
@@ -28,16 +28,15 @@ class Human implements Comparable {
     }
 
     @Override
-    public int compareTo(Object o) {
-        Human compHuman = (Human) o;
-        if (compHuman == null) {
+    public int compareTo(Human other) {
+        if (other == null) {
             return 1;
         }
-        int compBirthday = -birthday.compareTo(compHuman.getBirthday());
+        int compBirthday = other.getBirthday().compareTo(birthday);
         if (compBirthday != 0) {
             return compBirthday;
         } else {
-            return (id - compHuman.getId());
+            return (id - other.getId());
         }
     }
 
