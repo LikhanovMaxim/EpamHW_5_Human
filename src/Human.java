@@ -41,12 +41,15 @@ class Human implements Comparable<Human> {
     }
 
     @Override
-    public boolean equals(Object o) {
-        Human secondHuman = (Human) o;
-        if (name.equals(secondHuman.getName()) && birthday.equals(secondHuman.getBirthday()) && id == secondHuman.getId()) {
-            return true;
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
         }
-        return false;
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        Human other = (Human) obj;
+        return name.equals(other.getName()) && birthday.equals(other.getBirthday()) && id == other.getId();
     }
 
     @Override
