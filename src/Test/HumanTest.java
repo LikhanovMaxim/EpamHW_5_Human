@@ -41,7 +41,23 @@ public class HumanTest {
         assertTrue(petr.getBirthday().equals(cal));
     }
 
+    @Test
+    public void nullEquals() throws Exception {
+        Calendar cal = Calendar.getInstance();
+        cal.set(1993, Calendar.OCTOBER, 18);
+        Human alex = new Human("Alex", 1923, cal);
+        assertFalse(alex.equals(null));
+    }
 
+    @Test
+    public void anotherClassEquals() throws Exception {
+        Calendar cal = Calendar.getInstance();
+        cal.set(1993, Calendar.OCTOBER, 18);
+        Human max = new Human("Max", 1923, cal);
+        String alex = "Alex";
+        assertFalse(max.equals(alex));
+    }
+    
     @Test
     public void reflexivityEquals() throws Exception {
         Calendar cal = Calendar.getInstance();
@@ -49,6 +65,7 @@ public class HumanTest {
         Human max = new Human("Max", 1923, cal);
         assertTrue(max.equals(max));
     }
+
 
     @Test
     public void symmetryEquals() throws Exception {
