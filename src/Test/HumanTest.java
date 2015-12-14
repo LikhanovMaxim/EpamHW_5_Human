@@ -57,7 +57,7 @@ public class HumanTest {
         String alex = "Alex";
         assertFalse(max.equals(alex));
     }
-    
+
     @Test
     public void reflexivityEquals() throws Exception {
         Calendar cal = Calendar.getInstance();

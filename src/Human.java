@@ -6,8 +6,14 @@ class Human implements Comparable<Human> {
     private int id;
 
     Human(String name, int id, Calendar birthday) {
+        if (name == null) {
+            assert false : "Name = null!";
+        }
         this.name = name;
         this.id = id;
+        if (birthday == null) {
+            assert false : "Birthday = null!";
+        }
         this.birthday = (Calendar) birthday.clone();
     }
 
