@@ -41,14 +41,6 @@ public class HumanTest {
         assertTrue(petr.getBirthday().equals(cal));
     }
 
-    @Test
-    public void nullCompareTo() throws Exception {
-        Calendar cal = Calendar.getInstance();
-        cal.set(1994, Calendar.APRIL, 5);
-        Human human = new Human("Masha", 6543, cal);
-        Human compareNull = null;
-        assertTrue(human.compareTo(compareNull) == 1);
-    }
 
     @Test
     public void reflexivityEquals() throws Exception {
@@ -97,6 +89,15 @@ public class HumanTest {
     }
 
     @Test
+    public void nullCompareTo() throws Exception {
+        Calendar cal = Calendar.getInstance();
+        cal.set(1994, Calendar.APRIL, 5);
+        Human human = new Human("Masha", 6543, cal);
+        Human compareNull = null;
+        assertTrue(human.compareTo(compareNull) == 1);
+    }
+
+    @Test
     public void testCompareTo() throws Exception {
         Calendar cal = Calendar.getInstance();
         cal.set(1993, Calendar.OCTOBER, 18);
@@ -116,6 +117,19 @@ public class HumanTest {
     }
 
     @Test
+    public void birthdaysSameCompareTo() throws Exception {
+        Calendar cal = Calendar.getInstance();
+        cal.set(1993, Calendar.OCTOBER, 18);
+        Human max = new Human("Max", 1923, cal);
+        cal.set(1993, Calendar.OCTOBER, 18);
+        Human petr = new Human("Petr", 1234, cal);
+        Human[] arr = {max, petr};
+        Human[] result = {petr, max};
+        Arrays.sort(arr);
+        assertTrue(Arrays.equals(arr, result));
+    }
+
+    @Test
     public void testToString() throws Exception {
         Calendar cal = Calendar.getInstance();
         cal.set(1993, Calendar.OCTOBER, 18);
@@ -123,4 +137,6 @@ public class HumanTest {
         String result = "Human{Max: Birthday - 18.10.1993. ID - 1923}";
         assertTrue(result.equals(max.toString()));
     }
+
+
 }
